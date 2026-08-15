@@ -1,9 +1,9 @@
 from funcoesCRUD import listar_produtos, cadastrar_produto, atualizar_produto, excluir_produto
+from funcoesMOVES import registrar_entrada, registrar_saida
 
 produtos = listar_produtos()
 for produto in produtos: print(produto)
-
-
+print()
 
 #Teste da Função Cadastrar
 '''
@@ -38,3 +38,11 @@ print()
 produtos = listar_produtos()
 for produto in produtos: print(produto)
 '''
+
+#Teste das Funções Registrar (Entrada e Saída)
+    #registrar_saida (1, 5)
+    #registrar_saida(1, 1000)
+    #registrar_saida(1, 3)
+    #registrar_entrada(1, 5)
+    #produtos = listar_produtos()
+    #for produto in produtos: print(produto)

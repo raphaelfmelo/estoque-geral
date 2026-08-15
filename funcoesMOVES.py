@@ -24,3 +24,17 @@ def registrar_saida(id_produto, quantidade):
     resultado = cursor.fetchone()
 
     estoque_atual = resultado[0] #posição 0 pois está puxando apenas 1 item da tabela
+
+    if estoque_atual < quantidade:
+        print('Erro: Estoque insuficiente para retirada.')
+        conexao.close()
+        return
+
+    cursor.execute("""
+        UPDATE produtos
+        SET estoque = estoque - ?
+        WHERE id = ?
+    """, (quantidade, id_produto))
+
+    conexao.commit()
+    conexao.close()
