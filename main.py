@@ -45,24 +45,10 @@ for produto in produtos: print(produto)
 '''
 
 #Teste das Funções Registrar (Entrada e Saída)
-#registrar_saida (1, 5)
-#registrar_saida(1, 1000)
-#registrar_saida(1, 3)
-#registrar_entrada(1, 5)
+registrar_saida (1, 5)
+registrar_saida(1, 1000)
+registrar_saida(1, -10)
+registrar_entrada(1, 0)
 #produtos = listar_produtos()
 #for produto in produtos: print(produto)
 #registrar_entrada(1, 3)
-
-cursor.execute("""
-    SELECT * FROM movimentacoes
-""")
-
-movimentacoes = cursor.fetchall()
-for movimentacao in movimentacoes:
-    print(movimentacao)
-
-print()
-
-movimentacoees = listar_movimentacoes()
-for move in movimentacoees:
-    print(move)
