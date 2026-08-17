@@ -21,21 +21,21 @@ def listar_produtos():
 
 
 # Função para inserir/cadastrar novos produtos na tabela
-def cadastrar_produto(nome, categoria, subcategoria, preco, estoque, estoque_minimo):
+def cadastrar_produto(nome, categoria, preco, estoque, estoque_minimo):
     conexao, cursor = inicializar()
 
     cursor.execute("""
-        INSERT INTO produtos (nome, categoria, subcategoria, preco, estoque, estoque_minimo)
+        INSERT INTO produtos (nome, categoria, preco, estoque, estoque_minimo)
         VALUES
-            (?, ?, ?, ?, ?, ?)  
-    """, (nome, categoria, subcategoria, preco, estoque, estoque_minimo))
+            (?, ?, ?, ?, ?)  
+    """, (nome, categoria, preco, estoque, estoque_minimo))
 
     conexao.commit()
     conexao.close()
 
 
 #Função para atualizar informações do produto
-def atualizar_produto(id_produto, nome, categoria, subcategoria, preco, estoque, estoque_minimo):
+def atualizar_produto(id_produto, nome, categoria, preco, estoque, estoque_minimo):
     conexao, cursor = inicializar()
 
     cursor.execute("""
@@ -43,12 +43,11 @@ def atualizar_produto(id_produto, nome, categoria, subcategoria, preco, estoque,
         SET
             nome = ?,
             categoria = ?,
-            subcategoria = ?,
             preco = ?,
             estoque = ?,
             estoque_minimo = ?
         WHERE id = ?
-    """, (nome, categoria, subcategoria, preco, estoque, estoque_minimo, id_produto))
+    """, (nome, categoria, preco, estoque, estoque_minimo, id_produto))
 
     conexao.commit()
     conexao.close()
