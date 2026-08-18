@@ -3,7 +3,7 @@ import sqlite3
 
 # Função para inicialização das variáveis de conexão e manipulação de dados - Python & DB Browser (Banco de Dados)
 def inicializar():
-    conexao = sqlite3.connect('estoque.db')
+    conexao = sqlite3.connect('estoque_inicial.db')
     cursor = conexao.cursor()
 
     return conexao, cursor

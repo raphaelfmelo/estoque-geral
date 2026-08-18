@@ -182,8 +182,3 @@ cython_debug/
 
 # PyCharm
 .idea/
-
-# Banco de dados local
-*.db
-*.sqlite
-*.sqlite3
