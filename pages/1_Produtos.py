@@ -20,7 +20,7 @@ df = pd.DataFrame(
 )
 st.dataframe(df, hide_index= True)
 
-
+st.divider()
 #Cadastro de Produto
 st.header("Cadastro de Produto")
 
@@ -45,7 +45,7 @@ with st.expander('Cadastrar Produto'):
             cadastrar_produto(nome, categoria, preco, estoque, estoque_minimo)
             st.success('Produto Cadastrado!')
             st.rerun()
-
+st.divider()
 
 
 #Edição de Produto
@@ -80,6 +80,7 @@ with st.expander('Editar Produto'):
     if st.button('Atualizar Produto'):
         atualizar_produto(id_produto, nome, categoria, preco, estoque, estoque_minimo)
         st.rerun()
+st.divider()
 
 
 #Desativação de Produto
@@ -101,7 +102,7 @@ with st.expander('Desativar Produto'):
         if st.button('Confirmar desativação'):
             resultado = desativar_produto(id_produto)
             st.rerun()
-
+st.divider()
 
 
 st.header('Recuperar Produto')
@@ -122,3 +123,4 @@ with st.expander('Reativar Produto'):
         if st.button('Confirmar Reativação'):
             resultado = reativar_produto(id_produto)
             st.rerun()
+st.divider()

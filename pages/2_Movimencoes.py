@@ -30,6 +30,7 @@ opcoes_produtos = {
 }
 
 
+st.divider()
 #Registrar Entrada - Criação
 st.header('Registrar Entrada')
 
@@ -47,6 +48,7 @@ with st.expander('Registrar entrada de estoque'):
         registrar_entrada(id_produto, quantidade)
         st.success('Entrada registrada!')
         st.rerun()
+st.divider()
 
 
 #Registrar Saída - Criação
@@ -66,3 +68,4 @@ with st.expander('Registrar saída de estoque'):
         registrar_saida(id_produto, quantidade)
         st.success('Saída registrada!')
         st.rerun()
+st.divider()

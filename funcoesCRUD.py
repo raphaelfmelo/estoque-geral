@@ -57,7 +57,7 @@ def atualizar_produto(id_produto, nome, categoria, preco, estoque, estoque_minim
     conexao.close()
 
 
-#Função para excluir um produto 
+#Função para remover um produto da lista
 def desativar_produto(id_produto):
     conexao, cursor = inicializar()
 
@@ -70,6 +70,8 @@ def desativar_produto(id_produto):
     conexao.commit()
     conexao.close()
 
+
+#Função para realocar um produto removido da lista para ela novamente
 def reativar_produto(id_produto):
     conexao, cursor = inicializar()
 
@@ -92,6 +94,23 @@ def listar_produtos_inativos():
     """)
 
     produtos = cursor.fetchall()
-
     conexao.close()
+
+    return produtos
+
+
+#Listar produtos com estoque baixo
+def listar_produtos_estoque_baixo():
+    conexao, cursor = inicializar()
+
+    cursor.execute("""
+    SELECT id, nome, categoria, preco, estoque, estoque_minimo
+    FROM produtos
+    WHERE ativo  = 1
+    AND estoque <= estoque_minimo
+    """)
+
+    produtos = cursor.fetchall()
+    conexao.close()
+
     return produtos
