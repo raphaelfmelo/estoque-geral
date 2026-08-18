@@ -53,33 +53,35 @@ st.header("Edição de Produto")
 
 with st.expander('Editar Produto'):
 
-    opcoes_produtos = {
-        f'(ID {produto[0]}) — {produto[1]}': produto[0]
-        for produto in produtos
-    }
+    if not produtos:
+        st.info('Não existem produtos registrados.')
 
-    produto_selecionado = st.selectbox('Produto', options=opcoes_produtos.keys())
+    else:
+        opcoes_produtos = {
+            f'(ID {produto[0]}) — {produto[1]}': produto[0]
+            for produto in produtos
+        }
 
-    id_produto = opcoes_produtos[produto_selecionado]
+        produto_selecionado = st.selectbox('Produto', options=opcoes_produtos.keys())
 
-    produto_atual = next(
-        produto for produto in produtos
-        if produto[0] == id_produto
-    )
+        id_produto = opcoes_produtos[produto_selecionado]
 
-    nome = st.text_input('Nome', value= produto_atual[1])
+        produto_atual = next(
+            produto for produto in produtos
+            if produto[0] == id_produto
+        )
 
-    categoria = st.text_input('Categoria', value= produto_atual[2])
+        nome = st.text_input('Nome', value= produto_atual[1])
 
-    preco = st.number_input('Preço', min_value=0.0, value= float(produto_atual[3]), step=0.01)
+        categoria = st.text_input('Categoria', value= produto_atual[2])
 
-    estoque = st.number_input('Estoque', min_value=0, value= int(produto_atual[4]), step=1)
+        preco = st.number_input('Preço', min_value=0.0, value= float(produto_atual[3]), step=0.01)
 
-    estoque_minimo = st.number_input('Estoque Mínimo', min_value=0, value= int(produto_atual[5]), step=1)
+        estoque_minimo = st.number_input('Estoque Mínimo', min_value=0, value= int(produto_atual[5]), step=1)
 
-    if st.button('Atualizar Produto'):
-        atualizar_produto(id_produto, nome, categoria, preco, estoque, estoque_minimo)
-        st.rerun()
+        if st.button('Atualizar Produto'):
+            atualizar_produto(id_produto, nome, categoria, preco, estoque, estoque_minimo)
+            st.rerun()
 st.divider()
 
 
@@ -87,40 +89,50 @@ st.divider()
 st.header('Remoção de Produto')
 
 with st.expander('Desativar Produto'):
-    opcoes_produtos = {
-        f'(ID {produto[0]}) — {produto[1]}': produto[0]
-        for produto in produtos
-    }
 
-    produto_selecionado = st.selectbox('Produto para desativar', options= opcoes_produtos.keys(), key='desativar_prod')
+    if not produtos:
+        st.info('Não existem produtos registrados.')
 
-    id_produto = opcoes_produtos[produto_selecionado]
+    else:
+        opcoes_produtos = {
+            f'(ID {produto[0]}) — {produto[1]}': produto[0]
+            for produto in produtos
+        }
 
-    confirmar = st.checkbox('Tenho certeza que quero desativar esse produto')
+        produto_selecionado = st.selectbox('Produto para desativar', options= opcoes_produtos.keys(), key='desativar_prod')
 
-    if confirmar:
-        if st.button('Confirmar desativação'):
-            resultado = desativar_produto(id_produto)
-            st.rerun()
+        id_produto = opcoes_produtos[produto_selecionado]
+
+        confirmar = st.checkbox('Tenho certeza que quero desativar esse produto')
+
+        if confirmar:
+            if st.button('Confirmar desativação'):
+                resultado = desativar_produto(id_produto)
+                st.rerun()
 st.divider()
 
 
 st.header('Recuperar Produto')
 
 with st.expander('Reativar Produto'):
-    opcoes_inativos = {
-        f'(ID {produto[0]}) — {produto[1]}': produto[0]
-        for produto in produtos_inativos
-    }
 
-    produto_selecionado = st.selectbox('Produto para reativar', options=opcoes_inativos.keys(), key='reativar_prod')
+    if not produtos_inativos:
+        st.info('Não existem produtos desativados/removidos.')
 
-    id_produto = opcoes_inativos[produto_selecionado]
+    else:
+        opcoes_inativos = {
+            f'(ID {produto[0]}) — {produto[1]}': produto[0]
+            for produto in produtos_inativos
+        }
 
-    confirmar = st.checkbox('Tenho certeza que quero reativar esse produto')
+        produto_selecionado = st.selectbox('Produto para reativar', options=opcoes_inativos.keys(), key='reativar_prod')
 
-    if confirmar:
-        if st.button('Confirmar Reativação'):
-            resultado = reativar_produto(id_produto)
-            st.rerun()
+        id_produto = opcoes_inativos[produto_selecionado]
+
+        confirmar = st.checkbox('Tenho certeza que quero reativar esse produto')
+
+        if confirmar:
+            if st.button('Confirmar Reativação'):
+                resultado = reativar_produto(id_produto)
+                st.rerun()
 st.divider()

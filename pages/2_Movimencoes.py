@@ -36,18 +36,22 @@ st.header('Registrar Entrada')
 
 with st.expander('Registrar entrada de estoque'):
 
-    produto_selecionado = st.selectbox('Produto', options= opcoes_produtos.keys(), key= 'entrada_prod')
+    if not produtos:
+        st.info('Não existem produtos registrados.')
 
-    quantidade = st.number_input('Entrada de Estoque', min_value=1, step=1)
+    else:
+        produto_selecionado = st.selectbox('Produto', options= opcoes_produtos.keys(), key= 'entrada_prod')
 
-    confirmar = st.button('Registrar Entrada')
+        quantidade = st.number_input('Entrada de Estoque', min_value=1, step=1)
 
-    if confirmar:
-        id_produto = opcoes_produtos[produto_selecionado]
+        confirmar = st.button('Registrar Entrada')
 
-        registrar_entrada(id_produto, quantidade)
-        st.success('Entrada registrada!')
-        st.rerun()
+        if confirmar:
+            id_produto = opcoes_produtos[produto_selecionado]
+
+            registrar_entrada(id_produto, quantidade)
+            st.success('Entrada registrada!')
+            st.rerun()
 st.divider()
 
 
@@ -56,16 +60,20 @@ st.header('Registrar Saída')
 
 with st.expander('Registrar saída de estoque'):
 
-    produto_selecionado = st.selectbox('Produto', options= opcoes_produtos.keys(), key='saida_prod')
+    if not produtos:
+        st.info('Não existem produtos registrados.')
 
-    quantidade = st.number_input('Saída de Estoque', min_value=1, step=1)
+    else:
+        produto_selecionado = st.selectbox('Produto', options= opcoes_produtos.keys(), key='saida_prod')
 
-    confirmar = st.button('Registrar Saída')
+        quantidade = st.number_input('Saída de Estoque', min_value=1, step=1)
 
-    if confirmar:
-        id_produto = opcoes_produtos[produto_selecionado]
+        confirmar = st.button('Registrar Saída')
 
-        registrar_saida(id_produto, quantidade)
-        st.success('Saída registrada!')
-        st.rerun()
+        if confirmar:
+            id_produto = opcoes_produtos[produto_selecionado]
+
+            registrar_saida(id_produto, quantidade)
+            st.success('Saída registrada!')
+            st.rerun()
 st.divider()
