@@ -25,7 +25,7 @@ st.dataframe(df, hide_index=True)
 
 #Configuração de recurso para limitar escolha de usuário a produtos existentes na lista - Entrada e Saída
 opcoes_produtos = {
-    f"(Id {produto[0]}) — {produto[1]}": produto[0]
+    f"(ID {produto[0]}) — {produto[1]}": produto[0]
     for produto in produtos
 }
 

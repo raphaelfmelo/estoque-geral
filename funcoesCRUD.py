@@ -13,10 +13,14 @@ def inicializar():
 def listar_produtos():
     conexao, cursor = inicializar()
 
-    cursor.execute(""" SELECT * FROM produtos """)
+    cursor.execute(""" SELECT id, nome, categoria, preco, estoque, estoque_minimo
+     FROM produtos
+     WHERE ativo = 1
+     """)
 
     produtos = cursor.fetchall()
     conexao.close()
+
     return produtos
 
 
@@ -54,13 +58,40 @@ def atualizar_produto(id_produto, nome, categoria, preco, estoque, estoque_minim
 
 
 #Função para excluir um produto 
-def excluir_produto(id_produto):
+def desativar_produto(id_produto):
     conexao, cursor = inicializar()
 
     cursor.execute("""
-        DELETE FROM produtos
+        UPDATE produtos
+        SET ativo = 0
         WHERE id = ?
     """,(id_produto,))
 
     conexao.commit()
     conexao.close()
+
+def reativar_produto(id_produto):
+    conexao, cursor = inicializar()
+
+    cursor.execute("""
+    UPDATE produtos
+    SET ativo = 1
+    WHERE id = ?
+    """, (id_produto,))
+
+    conexao.commit()
+    conexao.close()
+
+def listar_produtos_inativos():
+    conexao, cursor = inicializar()
+
+    cursor.execute("""
+    SELECT id, nome, categoria, preco, estoque, estoque_minimo
+    FROM produtos
+    WHERE ativo = 0
+    """)
+
+    produtos = cursor.fetchall()
+
+    conexao.close()
+    return produtos
